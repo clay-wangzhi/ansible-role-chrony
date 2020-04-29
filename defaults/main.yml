@@ -1,0 +1,10 @@
+# Set up the time source server
+ntp_servers:
+  - "ntp1.aliyun.com"
+  - "ntp2.aliyun.com"
+  - "time1.cloud.tencent.com"
+  - "time2.cloud.tencent.com"
+  - "0.cn.pool.ntp.org"
+
+# Set network segments that allow internal time synchronization, such as "10.0.0.0/8", all allowed by default
+local_network: "0.0.0.0/0"

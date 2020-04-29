@@ -1,0 +1,36 @@
+---
+- name: Uninstall ntp
+  yum: 
+    name: ntp
+    state: absent
+
+- name: Install chrony
+  yum:
+    name: chrony
+    state: present
+
+- block:
+  - name: Config chrony server
+    template:
+      src: server-centos.conf.j2
+      dest: /etc/chrony.conf
+
+  - name: Start chrony server
+    service:
+      name: chronyd
+      state: restarted
+      enabled: yes
+  when: 'inventory_hostname == groups.chrony[0]'
+
+- block:
+  - name: Config chrony client
+    template:
+      src: client-centos.conf.j2
+      dest: /etc/chrony.conf
+
+  - name: Start chrony client
+    service:
+      name: chronyd
+      state: restarted
+      enabled: yes
+  when: 'inventory_hostname != groups.chrony[0]'
