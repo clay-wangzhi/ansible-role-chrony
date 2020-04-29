@@ -3,7 +3,9 @@ Ansible role to chrony .
 ### Example Playbook
 
 ```
-- hosts: servers
+- hosts:
+  - servers
+  - chrony
   roles:
-    - { role: clay_wangzhi.chrony }
+    - { role: clay_wangzhi.chrony, when: "groups['chrony']|length > 0" }
 ```
