@@ -10,4 +10,4 @@ Ansible role to chrony .
     - { role: clay_wangzhi.chrony, when: "groups['chrony']|length > 0" }
 ```
 
-> test tag 2.1
+> test tag 2.2
